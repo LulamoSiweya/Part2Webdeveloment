@@ -1,0 +1,350 @@
+
+*{  margin:0;
+    padding:0;
+    box-sizing: border-box; 
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Roboto, Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: #111827;
+    background: #f5f7fb;
+}
+
+::selection {
+    background: #ff7a00;
+    color: #000;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #ff7a00;
+    outline-offset: 3px;
+}
+
+/* ---------- Header ---------- */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    padding: 0.85rem max(1.25rem, calc((100% - 1100px) / 2));
+    background: #000;
+    border-bottom: 4px solid #ff7a00;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: #fff;
+}
+
+header nav {
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+header nav a {
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.98rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+header nav a:hover {
+    background: #ff7a00;
+    color: #000;
+}
+
+/* ---------- Main layout ----------
+   The page's sections are direct children of <main>, so <main> becomes a
+   grid: everything spans the full width, except the gallery images,
+   which flow into a responsive grid of tiles. */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 3.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+main > * {
+    grid-column: 1 / -1;
+}
+
+main > br {
+    display: none;
+}
+
+/* ---------- Banner ---------- */
+main > img:first-of-type {
+    width: 100%;
+    height: clamp(200px, 42vw, 420px);
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* ---------- Section headings ---------- */
+main h1 {
+    margin: 1.75rem 0 0;
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: #000;
+}
+
+main h1::after {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 5px;
+    margin-top: 0.6rem;
+    border-radius: 3px;
+    background: #ff7a00;
+}
+
+/* ---------- About / Mission / Vision text ---------- */
+main > p {
+    margin: 0;
+    max-width: 72ch;
+    padding-left: 1.1rem;
+    border-left: 4px solid #1558e6;
+}
+
+/* ---------- Services (unordered list) ---------- */
+main > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+}
+
+main > ul li {
+    padding: 1rem 1.1rem;
+    background: #fff;
+    border: 1px solid #dbe2f0;
+    border-top: 4px solid #ff7a00;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* ---------- Why choose us (ordered list) ---------- */
+main > ol {
+    list-style: none;
+    margin: 0;
+    padding: 0.4rem 1.6rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    column-gap: 2.5rem;
+    background: #000;
+    color: #fff;
+    border-radius: 12px;
+}
+
+main > ol li {
+    position: relative;
+    padding: 0.95rem 0 0.95rem 1.6rem;
+    border-bottom: 1px solid #2b2b2b;
+    font-weight: 600;
+}
+
+main > ol li:last-child {
+    border-bottom: 0;
+}
+
+main > ol li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.45rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 2px;
+    background: #ff7a00;
+}
+
+/* ---------- Gallery images ---------- */
+main > img:nth-of-type(n + 2) {
+    grid-column: auto;
+    align-self: start;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #dbe2f0;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+main > img:nth-of-type(n + 2):hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Quote form ---------- */
+#quoteForm {
+    width: 100%;
+    max-width: 720px;
+    display: grid;
+    gap: 0.35rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: #fff;
+    border: 1px solid #dbe2f0;
+    border-top: 5px solid #1558e6;
+    border-radius: 12px;
+}
+
+#quoteForm br {
+    display: none;
+}
+
+#quoteForm label {
+    margin-top: 0.7rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #000;
+}
+
+#quoteForm input,
+#quoteForm textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font: inherit;
+    color: #111827;
+    background: #f5f7fb;
+    border: 2px solid #cfd7e8;
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+#quoteForm input::placeholder,
+#quoteForm textarea::placeholder {
+    color: #7b849a;
+}
+
+#quoteForm input:focus,
+#quoteForm textarea:focus {
+    outline: none;
+    background: #fff;
+    border-color: #1558e6;
+    box-shadow: 0 0 0 4px rgba(21, 88, 230, 0.2);
+}
+
+#quoteForm textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+#quoteForm button[type="submit"] {
+    justify-self: start;
+    margin-top: 1.1rem;
+    padding: 0.9rem 1.7rem;
+    font: inherit;
+    font-weight: 800;
+    color: #000;
+    background: #ff7a00;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+#quoteForm button[type="submit"]:hover {
+    background: #000;
+    color: #ff7a00;
+}
+
+#quoteForm button[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+.fill-form {
+    margin: 0.5rem 0 0;
+    font-size: 0.88rem;
+    color: #5b6478;
+}
+
+/* ---------- WhatsApp link ---------- */
+main > a {
+    justify-self: start;
+    display: inline-block;
+    padding: 0.85rem 1.6rem;
+    background: #1558e6;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+main > a:hover {
+    background: #000;
+    color: #ff7a00;
+}
+
+/* ---------- Map ---------- */
+main > iframe {
+    width: 100%;
+    height: 380px;
+    border-radius: 12px;
+    background: #e3e8f3;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    padding: 1.5rem 1.25rem;
+    background: #000;
+    border-top: 4px solid #ff7a00;
+    text-align: center;
+}
+
+.copyright {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #cfd5e3;
+}
+
+/*Mobile responsive design*/
+@media only screen and (max-width: 600px){
+    .main-nav{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+    }
+}
